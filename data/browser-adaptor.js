@@ -9,11 +9,12 @@
   let chrome = { storage: { local: {} } };
 
   chrome.storage.local.get = function (name, getter) {
-
+    self.port.once("get", getter);
+    self.port.emit("get");
   };
 
   chrome.storage.local.set = function (items) {
-
+    self.port.emit("set", items);
   };
 
   window.chrome = chrome;

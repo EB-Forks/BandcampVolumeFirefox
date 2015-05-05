@@ -11,7 +11,7 @@
   "preferences": [
     {
       "name": "volume",
-      "type": "integer",
+      "type": "string",
       "title": "Volume",
       "hidden": true
     }
