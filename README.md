@@ -1,29 +1,24 @@
 # Bandcamp Volume
 
-A Chrome Extension to add a volume slider to [bandcamp](http://www.bandcamp.com) album pages. Once this app is a little more mature, I plan on publishing it on the Chrome Web Store.
+A Firefox add-on that adds a volume slider to [Bandcamp](http://www.bandcamp.com) album pages. Based on [Bandcamp Volume for Chrome](https://github.com/ubercow/bandcamp_volume) by Zak Kristjanson. 
 
 
 ## Usage
-You can test this out by cloning the repository and simply loading it into chrome as an unpackaged extention.
+The add-on is fully functional. Will be published to Mozilla repo soon.
 
 ## Background
-I browse Bandcamp a lot for albums which uses an html5 based audio player. This player, however, lacks any form of volume control. When asked about it, Bandcamp responded with the following:
+Bandcamp is a great music site with a lot for albums. It uses an html5 based audio player. This player, however, lacks any form of volume control. When asked about it, Bandcamp responded with the following:
 
 From the [Bandcamp FAQ Page](http://bandcamp.com/faq#volume):
 > There isn't one. If your fans want to change the volume of the audio on Bandcamp, they adjust their computer's volume -- simple as that. We're not trying to build the ultimate platform for them to stream your albums while they play World of Warcraft in another window (which we completely agree would require an independent volume control). The streams on Bandcamp are there so visitors can listen to your music, decide if they like it, and if so, download it. Nothing more.
 
-This gave me inspiration to try and refresh my knowledge on HTML/JS/CSS and start learning basic Chrome Extensions.
-
-I'd also like to give a shoutout to [Aaron Ahmed](https://github.com/polar-bear) for helping me derust my JS and CSS.
-
 ## Known Limitations
-- The volume slider does not work on the compact UI yet. When you make the page smaller, the volume bar does not show up on the compact UI.
+Doesn't work on "redirected" bandcamp sites. See [this issue](https://github.com/ubercow/bandcamp_volume/issues/2). There is a proposed solution that might work for Firefox too.
 
 ## License
 All source code in this project are licensed under the MIT license.
 
-Copyright (c) 2013 Zak Kristjanson.
-Firefox port copyright (c) 2015 Daniel Kamkha
+Copyright (c) 2015 Daniel Kamkha
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the “Software”), to deal
