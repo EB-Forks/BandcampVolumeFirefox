@@ -52,10 +52,10 @@ var BandcampVolume =
 		col.setAttribute("colspan", "3")
 
 		var volcontainer = document.createElement("div")
-		volcontainer.style.marginLeft = "0.3em"
+		volcontainer.style.marginLeft = "0.83em"
 
 		var input = document.createElement("span")
-		input.innerText = "Volume:"
+		input.innerHTML = "Volume:"
 		input.style.marginRight = "0.3em"
 		input.style.fontWeight = "bold"
 		input.style.display = "inline-block"
