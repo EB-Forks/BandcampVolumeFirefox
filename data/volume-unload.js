@@ -7,11 +7,17 @@
 	"use strict";
 
 	function unloadBandcampVolume() {
-		let desktop_view = document.getElementsByClassName("inline_player")[0];
-		let tbody = desktop_view.querySelector("tbody");
-		let row = tbody.querySelector("tr:last-child");
-		tbody.removeChild(row);
-		desktop_view.querySelector("tr:first-child td:first-child").setAttribute("rowspan", "2");
+		if (!BandcampVolume) {
+			return;
+		}
+		let inline_player = document.getElementsByClassName("inline_player")[0];
+		if (inline_player) {
+			let tbody = inline_player.querySelector("tbody");
+			if (tbody && tbody.children.length > 2) {
+				tbody.removeChild(tbody.children[2]);
+				inline_player.querySelector("tr:first-child td:first-child").setAttribute("rowspan", "2");
+			}
+		}
 		BandcampVolume = null;
 	}
 
