@@ -21,10 +21,10 @@
     },
     _slider_mouseup: function(evt) {
       // Get the value of the input
-      var newVol = evt.target.value;
+      let newVol = evt.target.value;
 
-      // Put it in Chrome's local storage for global persistence
-      chrome.storage.local.set({"volume": newVol});
+      // Put it in storage for global persistence
+      self.port.emit("set", {"volume": newVol});
 
       // Yes I know I am going to set the slider that's triggering this event to it's own value.
       this._ranges.forEach( function(element) { element.value = newVol; });
@@ -32,27 +32,27 @@
     load: function() {
       this._audioTag = document.getElementsByTagName("audio")[0];
 
-      var that = this;
-      chrome.storage.local.get("volume", function(items) {
-        var newVol = items["volume"] || that._audioTag.volume;
-
+      let that = this;
+      self.port.once("get", function(items) {
+        let newVol = items["volume"] || that._audioTag.volume;
         that._ranges.forEach(function(element) { element.value = newVol; });
         that._audioTag.volume = newVol
       });
+      self.port.emit("get");
 
       // Create the volume layout
-      var desktop_view = document.getElementsByClassName("inline_player")[0];
+      let desktop_view = document.getElementsByClassName("inline_player")[0];
       this._rowspanRow = desktop_view.querySelector("tr:first-child td:first-child");
       this._rowspanRow.setAttribute("rowspan", "3");
 
       this._sliderRow = document.createElement("tr");
-      var col = this._sliderRow.appendChild(document.createElement("td"));
+      let col = this._sliderRow.appendChild(document.createElement("td"));
       col.setAttribute("colspan", "3");
 
-      var volContainer = document.createElement("div");
+      let volContainer = document.createElement("div");
       volContainer.style.marginLeft = "0.83em";
 
-      var volumeSpan = document.createElement("span");
+      let volumeSpan = document.createElement("span");
       volumeSpan.style.fontWeight = "bold";
       volumeSpan.style.display = "inline-block";
       volumeSpan.style.verticalAlign = "middle";
@@ -60,10 +60,10 @@
       volumeSpan.className = "fa fa-volume-up fa-lg";
 
       // Get some stuff from the player progress bar to add style to the volume bar
-      var playProgbar = desktop_view.querySelector(".progbar_empty");
-      var playProgbar_style = (playProgbar.currentStyle || window.getComputedStyle(playProgbar, null));
+      let playProgbar = desktop_view.querySelector(".progbar_empty");
+      let playProgbar_style = (playProgbar.currentStyle || window.getComputedStyle(playProgbar, null));
 
-      var range = document.createElement("input");
+      let range = document.createElement("input");
       range.style.display = "inline-block";
       range.style.verticalAlign = "middle";
 
