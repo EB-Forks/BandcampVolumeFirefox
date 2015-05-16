@@ -1,0 +1,13 @@
+.volumeIcon {
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  height: 14px;
+}
+.volumeSlider {
+  display: inline-block;
+  vertical-align: middle;
+  height: 4px;
+  background: none;
+  outline: none;
+}

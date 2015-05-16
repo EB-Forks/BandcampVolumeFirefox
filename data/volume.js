@@ -9,102 +9,87 @@
 (function() {
   "use strict";
 
-  let BandcampVolume =
-  {
-    _ranges: [],
-    _audioTag: null,
-    _rowspanRow: null,
-    _sliderRow: null,
-    _slider_change: function(evt) {
-      // Set the audio tag's volume to the slider's volume
-      this._audioTag.volume = evt.target.value
-    },
-    _slider_mouseup: function(evt) {
-      // Get the value of the input
-      let newVol = evt.target.value;
+  let rangesCache = [];
+  let audioTag = null;
+  let rowspanRow = null;
+  let sliderRow = null;
 
-      // Put it in storage for global persistence
-      self.port.emit("set", {"volume": newVol});
+  function _slider_change(evt) {
+    // Set the audio tag's volume to the slider's volume
+    audioTag.volume = evt.target.value;
+  }
 
-      // Yes I know I am going to set the slider that's triggering this event to it's own value.
-      this._ranges.forEach( function(element) { element.value = newVol; });
-    },
-    load: function() {
-      this._audioTag = document.getElementsByTagName("audio")[0];
+  function _slider_mouseup(evt) {
+    // Get the value of the input
+    let newVol = evt.target.value;
 
-      let that = this;
-      self.port.once("get", function(items) {
-        let newVol = items["volume"] || that._audioTag.volume;
-        that._ranges.forEach(function(element) { element.value = newVol; });
-        that._audioTag.volume = newVol
-      });
-      self.port.emit("get");
+    // Put it in storage for global persistence
+    self.port.emit("set", {"volume": newVol});
 
-      // Create the volume layout
-      let desktop_view = document.getElementsByClassName("inline_player")[0];
-      this._rowspanRow = desktop_view.querySelector("tr:first-child td:first-child");
-      this._rowspanRow.setAttribute("rowspan", "3");
+    // Yes I know I am going to set the slider that's triggering this event to it's own value.
+    rangesCache.forEach( function(element) { element.value = newVol; });
+  }
 
-      this._sliderRow = document.createElement("tr");
-      let col = this._sliderRow.appendChild(document.createElement("td"));
-      col.setAttribute("colspan", "3");
+  function doAttach() {
+    audioTag = document.getElementsByTagName("audio")[0];
 
-      let volContainer = document.createElement("div");
-      volContainer.style.marginLeft = "0.83em";
+    self.port.once("get", function(items) {
+      let newVol = items["volume"] || audioTag.volume;
+      rangesCache.forEach(function(element) { element.value = newVol; });
+      audioTag.volume = newVol
+    });
+    self.port.emit("get");
 
-      let volumeSpan = document.createElement("span");
-      volumeSpan.style.fontWeight = "bold";
-      volumeSpan.style.display = "inline-block";
-      volumeSpan.style.verticalAlign = "middle";
-      volumeSpan.style.height = "14px";
-      volumeSpan.className = "fa fa-volume-up fa-lg";
+    // Create the volume layout
+    let desktop_view = document.getElementsByClassName("inline_player")[0];
+    rowspanRow = desktop_view.querySelector("tr:first-child td:first-child");
+    rowspanRow.setAttribute("rowspan", "3");
 
-      // Get some stuff from the player progress bar to add style to the volume bar
-      let playProgbar = desktop_view.querySelector(".progbar_empty");
-      let playProgbar_style = (playProgbar.currentStyle || window.getComputedStyle(playProgbar, null));
+    sliderRow = document.createElement("tr");
+    let col = sliderRow.appendChild(document.createElement("td"));
+    col.setAttribute("colspan", "3");
 
-      let range = document.createElement("input");
-      range.style.display = "inline-block";
-      range.style.verticalAlign = "middle";
+    let volContainer = document.createElement("div");
+    volContainer.style.marginLeft = "0.83em";
 
-      range.style.height = "4px";
-      range.style.webkitAppearance = "none";
-      range.style.background = "none";
-      range.style.border = playProgbar_style.border;
-      range.style.outline = "none";
+    let volumeIcon = document.createElement("span");
+    volumeIcon.className = "fa fa-volume-up fa-lg volumeIcon";
 
-      range.type="range";
-      range.max = 1;
-      range.step = 0.01;
-      range.min = 0;
-      range.value = this._audioTag.volume;
-      range.addEventListener("change", this._slider_change.bind(this));
-      range.addEventListener("mouseup", this._slider_mouseup.bind(this));
-      this._ranges.push(range);
+    // Get some stuff from the player progress bar to add style to the volume bar
+    let playProgbar = desktop_view.querySelector(".progbar_empty");
+    let playProgbar_style = (playProgbar.currentStyle || window.getComputedStyle(playProgbar, null));
 
-      volContainer.appendChild(volumeSpan);
-      volContainer.appendChild(range);
-      col.appendChild(volContainer);
-      desktop_view.querySelector("tbody").appendChild(this._sliderRow);
-    },
-    unload: function () {
-      if (this._sliderRow) {
-        this._sliderRow.parentNode.removeChild(this._sliderRow);
-        this._sliderRow = null;
-      }
-      if (this._rowspanRow) {
-        this._rowspanRow.setAttribute("rowspan", "2");
-        this._rowspanRow = null;
-      }
+    let volumeSlider = document.createElement("input");
+    volumeSlider.className = "volumeSlider";
+    volumeSlider.style.border = playProgbar_style.border;
+
+    volumeSlider.type = "range";
+    volumeSlider.max = 1;
+    volumeSlider.step = 0.01;
+    volumeSlider.min = 0;
+    volumeSlider.value = audioTag.volume;
+    volumeSlider.addEventListener("change", _slider_change);
+    volumeSlider.addEventListener("mouseup", _slider_mouseup);
+    rangesCache.push(volumeSlider);
+
+    volContainer.appendChild(volumeIcon);
+    volContainer.appendChild(volumeSlider);
+    col.appendChild(volContainer);
+    desktop_view.querySelector("tbody").appendChild(sliderRow);
+  }
+
+  function doDetach() {
+    if (sliderRow) {
+      sliderRow.parentNode.removeChild(sliderRow);
+      sliderRow = null;
     }
-  };
-
-  BandcampVolume.load();
-
-  self.port.on("detach", function () {
-    if (BandcampVolume) {
-      BandcampVolume.unload();
-      BandcampVolume = null;
+    if (rowspanRow) {
+      rowspanRow.setAttribute("rowspan", "2");
+      rowspanRow = null;
     }
-  });
+  }
+
+  doAttach();
+
+  self.port.on("detach", doDetach);
 })();
