@@ -5,7 +5,7 @@
   "description": "Adds a volume slider to Bandcamp album pages on bandcamp.com.",
   "author": "Daniel Kamkha",
   "license": "MIT",
-  "version": "1.0",
+  "version": "1.1",
   "homepage": "https://github.com/DanielKamkha/bandcamp_volume_firefox",
   "icon": "data/logo_128.png"
 }
