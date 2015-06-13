@@ -1,11 +1,10 @@
 //     This file is part of Bandcamp Volume add-on for Mozilla Firefox
-//     https://github.com/DanielKamkha/bandcamp_volume_firefox
+//     https://github.com/DanielKamkha/BandcampVolumeFirefox
 //     (c) 2015 Daniel Kamkha
 //     Bandcamp Volume is free software distributed under the terms of the MIT license.
 
-// TODO: retool per review
-// TODO: a less ugly icon
-// TODO: make it work on custom Bandcamp sites
+// TODO: change volume icon to fa-volume-down below 50% volume
+// TODO: make add-on work on custom Bandcamp sites (i.e. not ending with .bandcamp.com)
 
 (function() {
   "use strict";

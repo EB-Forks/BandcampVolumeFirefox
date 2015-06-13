@@ -58,7 +58,7 @@
       volContainer.style.marginLeft = "0.83em";
 
       let volumeIcon = document.createElement("span");
-      volumeIcon.className = "fa fa-volume-up fa-lg volumeIcon";
+      volumeIcon.className = "fa fa-lg volumeIcon fa-volume-up";
 
       // Get some stuff from the player progress bar to add style to the volume bar
       let playProgbar = desktop_view.querySelector(".progbar_empty");
