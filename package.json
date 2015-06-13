@@ -1,7 +1,6 @@
 {
   "name": "bandcamp-volume",
   "title": "Bandcamp Volume",
-  "main": "lib/main.js",
   "description": "Adds a volume slider to Bandcamp album pages on bandcamp.com.",
   "author": "Daniel Kamkha",
   "license": "MIT",

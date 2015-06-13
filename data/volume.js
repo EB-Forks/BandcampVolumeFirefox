@@ -1,5 +1,5 @@
 //     This file is part of Bandcamp Volume add-on for Mozilla Firefox
-//     https://github.com/DanielKamkha/bandcamp_volume_firefox
+//     https://github.com/DanielKamkha/BandcampVolumeFirefox
 //     (c) 2015 Daniel Kamkha
 //     Based on Bandcamp Volume extension for Google Chrome
 //     https://github.com/ubercow/bandcamp_volume
