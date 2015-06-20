@@ -1,4 +1,4 @@
-//     This file is part of Bandcamp Volume add-on for Mozilla Firefox
+//     This file is part of Bandcamp Volume extension for Mozilla Firefox
 //     https://github.com/DanielKamkha/BandcampVolumeFirefox
 //     (c) 2015 Daniel Kamkha
 //     Based on Bandcamp Volume extension for Google Chrome

@@ -1,10 +1,10 @@
 # Bandcamp Volume
 
-A Firefox add-on that adds a volume slider to [Bandcamp](http://www.bandcamp.com) album pages. Based on [Bandcamp Volume for Chrome](https://github.com/ubercow/bandcamp_volume) by Zak Kristjanson. 
+A Firefox extension that adds a volume slider to [Bandcamp](http://www.bandcamp.com) album pages. Based on [Bandcamp Volume for Chrome](https://github.com/ubercow/bandcamp_volume) by Zak Kristjanson.
 
 
 ## Usage
-The add-on is fully functional. Will be published to Mozilla repo soon.
+You can download and install this extension from the oficial Mozilla add-ons repository: https://addons.mozilla.org/en-US/firefox/addon/bandcamp-volume/
 
 ## Background
 Bandcamp is a great music site with a lot for albums. It uses an html5 based audio player. This player, however, lacks any form of volume control. When asked about it, Bandcamp responded with the following:
