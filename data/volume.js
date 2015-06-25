@@ -34,7 +34,7 @@
     }
 
     function attach() {
-      audioTag = document.getElementsByTagName("audio")[0];
+      audioTag = document.querySelector("audio");
 
       self.port.once("get", function (items) {
         let newVol = items["volume"] || audioTag.volume;
@@ -46,8 +46,8 @@
       self.port.emit("get");
 
       // Create the volume layout
-      let desktop_view = document.getElementsByClassName("inline_player")[0];
-      rowspanRow = desktop_view.querySelector("tr:first-child td:first-child");
+      let inlinePlayer = document.querySelector(".inline_player");
+      rowspanRow = inlinePlayer.querySelector("tr:first-child td:first-child");
       rowspanRow.setAttribute("rowspan", "3");
 
       sliderRow = document.createElement("tr");
@@ -61,7 +61,7 @@
       volumeIcon.className = "fa fa-lg volumeIcon fa-volume-up";
 
       // Get some stuff from the player progress bar to add style to the volume bar
-      let playProgbar = desktop_view.querySelector(".progbar_empty");
+      let playProgbar = inlinePlayer.querySelector(".progbar_empty");
       let playProgbar_style = (playProgbar.currentStyle || window.getComputedStyle(playProgbar, null));
 
       let volumeSlider = document.createElement("input");
@@ -80,7 +80,7 @@
       volContainer.appendChild(volumeIcon);
       volContainer.appendChild(volumeSlider);
       col.appendChild(volContainer);
-      desktop_view.querySelector("tbody").appendChild(sliderRow);
+      inlinePlayer.querySelector("tbody").appendChild(sliderRow);
     }
 
     function detach() {
@@ -98,6 +98,15 @@
       attach: attach,
       detach: detach
     }
+  }
+
+  function detectBandcampPlayer() {
+    return document.querySelector("audio") && document.querySelector(".inline_player");
+  }
+
+  if (!detectBandcampPlayer()) {
+    self.port.emit("disable");
+    return;
   }
 
   let controller = new BandcampVolume();

@@ -23,18 +23,19 @@
           storage.volume = items.volume;
         }
       });
+      worker.port.on("disable", function () {
+        worker.destroy();
+      });
     }
 
     require("sdk/page-mod").PageMod({
-      include: /.*\.bandcamp.com\/.*/, // Match anything containing ".bandcamp.com/"
+      include: "*", // Match everything
       attachTo: ["existing", "top"],
       contentStyleFile: [
         self.data.url("font-awesome.css"),
         self.data.url("content-style.css")
       ],
-      contentScriptFile: [
-        self.data.url("volume.js")
-      ],
+      contentScriptFile: self.data.url("volume.js"),
       onAttach: startListening
     });
   };

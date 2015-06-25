@@ -13,7 +13,7 @@ From the [Bandcamp FAQ Page](http://bandcamp.com/faq#volume):
 > There isn't one. If your fans want to change the volume of the audio on Bandcamp, they adjust their computer's volume -- simple as that. We're not trying to build the ultimate platform for them to stream your albums while they play World of Warcraft in another window (which we completely agree would require an independent volume control). The streams on Bandcamp are there so visitors can listen to your music, decide if they like it, and if so, download it. Nothing more.
 
 ## Known Limitations
-Doesn't work on "redirected" bandcamp sites. See [this issue](https://github.com/ubercow/bandcamp_volume/issues/2). There is a proposed solution that might work for Firefox too.
+Works for album/track pages. Also works at the front page. Does not work in collections.
 
 ## License
 All source code in this project are licensed under the MIT license.
