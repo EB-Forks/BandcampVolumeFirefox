@@ -23,7 +23,7 @@
           storage.volume = items.volume;
         }
       });
-      worker.port.on("disable", function () {
+      worker.port.once("disable", function () {
         worker.destroy();
       });
     }

@@ -9,7 +9,7 @@
 (function() {
   "use strict";
 
-  function BandcampVolume() {
+  function createBandcampVolumeController() {
     let rangesCache = [];
     let audioTag = null;
     let rowspanRow = null;
@@ -109,7 +109,7 @@
     return;
   }
 
-  let controller = new BandcampVolume();
+  let controller = createBandcampVolumeController();
   controller.attach();
 
   self.port.on("detach", function() {
