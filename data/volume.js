@@ -37,11 +37,11 @@
       audioTag = document.querySelector("audio");
 
       self.port.once("get", function (items) {
-        let newVol = items["volume"] || audioTag.volume;
+        let newVol = items.volume || audioTag.volume;
         rangesCache.forEach(function (element) {
           element.value = newVol;
         });
-        audioTag.volume = newVol
+        audioTag.volume = newVol;
       });
       self.port.emit("get");
 
@@ -97,7 +97,7 @@
     return {
       attach: attach,
       detach: detach
-    }
+    };
   }
 
   function detectBandcampPlayer() {

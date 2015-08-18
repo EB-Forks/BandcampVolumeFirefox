@@ -4,7 +4,7 @@ A Firefox extension that adds a volume slider to [Bandcamp](http://www.bandcamp.
 
 
 ## Usage
-You can download and install this extension from the oficial Mozilla add-ons repository: https://addons.mozilla.org/en-US/firefox/addon/bandcamp-volume/
+You can download and install this extension from the official Mozilla add-ons repository: https://addons.mozilla.org/en-US/firefox/addon/bandcamp-volume/
 
 ## Background
 Bandcamp is a great music site with a lot for albums. It uses an html5 based audio player. This player, however, lacks any form of volume control. When asked about it, Bandcamp responded with the following:

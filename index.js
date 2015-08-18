@@ -3,9 +3,7 @@
 //     (c) 2015 Daniel Kamkha
 //     Bandcamp Volume is free software distributed under the terms of the MIT license.
 
-// TODO: 64x64 icon for extension page
 // TODO: change volume icon to fa-volume-down below 50% volume
-// TODO: make extension work on custom Bandcamp sites (i.e. not ending with .bandcamp.com)
 
 (function() {
   "use strict";
