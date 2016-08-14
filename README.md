@@ -18,7 +18,7 @@ Works for album/track pages. Also works at the front page. Does not work in coll
 ## License
 All source code in this project are licensed under the MIT license.
 
-Copyright (c) 2015 Daniel Kamkha
+Copyright (c) 2015-2016 Daniel Kamkha
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the “Software”), to deal
