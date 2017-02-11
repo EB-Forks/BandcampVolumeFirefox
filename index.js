@@ -1,6 +1,6 @@
 //     This file is part of Bandcamp Volume extension for Mozilla Firefox
 //     https://github.com/DanielKamkha/BandcampVolumeFirefox
-//     (c) 2015-2016 Daniel Kamkha
+//     (c) 2015-2017 Daniel Kamkha
 //     Bandcamp Volume is free software distributed under the terms of the MIT license.
 
 // TODO: change volume icon to fa-volume-down below 50% volume
@@ -28,6 +28,7 @@
 
     require("sdk/page-mod").PageMod({
       include: "*", // Match everything
+      exclude: "https://bandcamp.com/", // Exclude Bandcamp front page
       attachTo: ["existing", "top"],
       contentStyleFile: [
         self.data.url("font-awesome.css"),
