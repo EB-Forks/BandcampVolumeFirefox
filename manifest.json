@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Bandcamp Volume",
+  "version": "1.3.0",
+  "applications": {
+    "gecko": {
+      "id": "@bandcamp-volume"
+    }
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "author": "Daniel Kamkha",
+  "description": "Adds a volume slider to Bandcamp album pages on bandcamp.com.",
+  "homepage_url": "https://github.com/DanielKamkha/BandcampVolumeFirefox",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["*://bandcamp.com/"],
+      "js": ["data/volume.js"],
+      "css": ["data/font-awesome.css", "data/content-style.css"]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}

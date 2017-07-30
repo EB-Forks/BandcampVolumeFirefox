@@ -25,7 +25,7 @@
       let newVol = evt.target.value;
 
       // Put it in storage for global persistence
-      self.port.emit("set", {"volume": newVol});
+      browser.storage.local.set({"volume": newVol});
 
       // Yes I know I am going to set the slider that's triggering this event to it's own value.
       rangesCache.forEach(function (element) {
@@ -36,14 +36,13 @@
     function attach() {
       audioTag = document.querySelector("audio");
 
-      self.port.once("get", function (items) {
-        let newVol = items.volume || audioTag.volume;
+      browser.storage.local.get("volume", function (response) {
+        let newVol = (response && response.volume) || audioTag.volume;
         rangesCache.forEach(function (element) {
           element.value = newVol;
         });
         audioTag.volume = newVol;
       });
-      self.port.emit("get");
 
       // Create the volume layout
       let inlinePlayer = document.querySelector(".inline_player");
@@ -104,16 +103,8 @@
     return document.querySelector("audio") && document.querySelector(".inline_player");
   }
 
-  if (!detectBandcampPlayer()) {
-    self.port.emit("disable");
-    return;
+  if (detectBandcampPlayer()) {
+    let controller = createBandcampVolumeController();
+    controller.attach();
   }
-
-  let controller = createBandcampVolumeController();
-  controller.attach();
-
-  self.port.on("detach", function() {
-    controller.detach();
-    controller = null;
-  });
 })();
